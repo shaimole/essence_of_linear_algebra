@@ -8,7 +8,7 @@ class Vector:
     def __str__(self) -> str:
         return self.elements.__str__()
 
-    def __eq__(self, other) -> bool:
+    def __eq__(self, other: 'Vector') -> bool:
         return self.elements == other.elements
 
     def add(self, vector: 'Vector') -> 'Vector':
