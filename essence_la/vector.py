@@ -1,6 +1,3 @@
-from numpy import void
-
-
 class Vector:
     def __init__(self, elements: list[float]):
         self.elements = elements
