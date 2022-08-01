@@ -1,5 +1,6 @@
 from essence_la.vector import Vector
 from essence_la.vector import format_for_quiver
+import pytest
 import numpy as np
 
 def test_import_vector_class():
@@ -31,8 +32,14 @@ def test_np_scale_vectors():
     assert product.all() == np.array([6.0, 3.3, 1.5]).all()
 
 def test_format_for_quiver():
+    with pytest.raises(Exception) as e:
+        vec1 = Vector([1, 2, 3])
+        vec2 = Vector([-1, 3])
+        format_for_quiver([vec1,vec2])
+    assert 'Vectors do not have the same Dimensions' in str(e)
+        
     vec1 = Vector([1, 2])
     vec2 = Vector([-1, 3])
     positions = format_for_quiver([vec1,vec2])
-    assert positions == [[0, 0], [0, 0], [1, -1], [-1, 3]]
+    assert positions == [[0, 0], [0, 0], [1, -1], [2, 3]]
 
