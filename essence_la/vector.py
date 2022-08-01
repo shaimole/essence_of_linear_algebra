@@ -18,4 +18,7 @@ class Vector:
         product = map(scale_elements, self.elements)
         return Vector(list(product))
 
+def format_for_quiver(vectors: list[Vector]) -> list[list]:
+    return []
+
         

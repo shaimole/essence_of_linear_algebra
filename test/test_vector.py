@@ -1,4 +1,5 @@
 from essence_la.vector import Vector
+from essence_la.vector import format_for_quiver
 import numpy as np
 
 def test_import_vector_class():
