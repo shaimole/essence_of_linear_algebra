@@ -1,5 +1,6 @@
 from essence_la.vector import Vector
 import numpy as np
+
 def test_import_vector_class():
     vec = Vector([1, 1])
 
@@ -27,4 +28,10 @@ def test_np_scale_vectors():
     vec = np.array([2.0, 1.1, 0.5])
     product = np.multiply(vec, 3)
     assert product.all() == np.array([6.0, 3.3, 1.5]).all()
+
+def test_format_for_quiver():
+    vec1 = Vector([1, 2])
+    vec2 = Vector([-1, 3])
+    positions = format_for_quiver([vec1,vec2])
+    assert positions == [[0, 0], [0, 0], [1, -1], [-1, 3]]
 
