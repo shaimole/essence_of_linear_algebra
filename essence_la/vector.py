@@ -28,14 +28,15 @@ def format_for_quiver(vectors: list[Vector]) -> list[list]:
     if not is_same_dimension(vectors):
          raise ValueError('Vectors do not have the same Dimensions')
 
-    vector_origins = map(lambda vector: vector.origin, vectors)
-    origins_by_dimension = zip(*vector_origins)
-    origins = list(map(list,origins_by_dimension))
-
-    vector_elements = map(lambda vector: vector.elements, vectors)
-    directions_by_dimension = zip(*vector_elements)
-    directions = list(map(list,directions_by_dimension))
+    origins = group_by_dimension(vectors, lambda vector: vector.origin)
+    directions = group_by_dimension(vectors, lambda vector: vector.elements)
     return [*origins, *directions]
+
+def group_by_dimension(vectors: list[Vector], map_lambda) -> list:
+    vector_elements = map(map_lambda, vectors)
+    elements_by_dimension = zip(*vector_elements)
+    return list(map(list,elements_by_dimension))
+
 
 def is_same_dimension(vectors: list[Vector]) -> bool:
     vector_length = lambda vector: len(vector.elements)
