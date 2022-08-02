@@ -47,5 +47,5 @@ def test_format_for_quiver_with_orgin():
     vec1 = Vector([1, 2]).set_origin([0, 0])
     vec2 = Vector([3, -1]).set_origin(vec1.elements)
     positions = format_for_quiver([vec1,vec2])
-    assert positions == [[0, 1], [0, 2], [1, -1], [2, 3]]
+    assert positions == [[0, 1], [0, 2], [1, 3], [2, -1]]
 

@@ -1,7 +1,7 @@
 class Vector:
     def __init__(self, elements: list[float]):
         self.elements = elements
-        self.origin = [] * len(elements)
+        self.origin = [0] * len(elements)
 
     def __str__(self) -> str:
         return self.elements.__str__()
@@ -27,14 +27,15 @@ class Vector:
 def format_for_quiver(vectors: list[Vector]) -> list[list]:
     if not is_same_dimension(vectors):
          raise ValueError('Vectors do not have the same Dimensions')
-    it = iter(vectors)
-    dimension = len(next(it).elements)
-    x_pos = [0] * dimension
-    y_pos = [0] * dimension
+
+    vector_origins = map(lambda vector: vector.origin, vectors)
+    origins_by_dimension = zip(*vector_origins)
+    origins = list(map(list,origins_by_dimension))
+
     vector_elements = map(lambda vector: vector.elements, vectors)
     directions_by_dimension = zip(*vector_elements)
     directions = list(map(list,directions_by_dimension))
-    return [x_pos, y_pos, *directions]
+    return [*origins, *directions]
 
 def is_same_dimension(vectors: list[Vector]) -> bool:
     vector_length = lambda vector: len(vector.elements)
