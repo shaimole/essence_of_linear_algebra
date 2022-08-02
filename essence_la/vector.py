@@ -1,6 +1,7 @@
 class Vector:
     def __init__(self, elements: list[float]):
         self.elements = elements
+        self.origin = [] * len(elements)
 
     def __str__(self) -> str:
         return self.elements.__str__()
@@ -17,6 +18,11 @@ class Vector:
         scale_elements = lambda a: round(a*scalar, 15)
         product = map(scale_elements, self.elements)
         return Vector(list(product))
+    
+    def set_origin(self, point: list[float]) -> 'Vector':
+        self.origin = point
+        return self
+    
 
 def format_for_quiver(vectors: list[Vector]) -> list[list]:
     if not is_same_dimension(vectors):
